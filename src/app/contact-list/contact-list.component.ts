@@ -1,19 +1,18 @@
-import { Component, Input } from '@angular/core';
-
+import { Component, Input } from "@angular/core";
 
 @Component({
-    selector: 'contact-list',
-    template: `
+  selector: "contact-list",
+  template: `
     <ng-content></ng-content>
-    <ul>
+      <ul>
         <li *ngFor="let contact of contacts">
-            {{contact.name}}: {{contact.number}}
-            <button type="click">Delete</button>
+          {{ contact.name }}: {{ contact.number }}
+          <button type="click">Delete</button>
         </li>
-    </ul>
-    `
+      </ul>
+  `,
 })
-
-export class ContactList{
-    @Input() contacts:Array<any> = []
+export class ContactList {
+  @Input() contacts: Array<any> = [];
+  @Input() filterValue: string = "";
 }
