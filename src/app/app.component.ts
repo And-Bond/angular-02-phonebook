@@ -7,21 +7,32 @@ import { Component } from "@angular/core";
       <contact-form (onSubmit)="onSubmitted($event)"
         ><h1>Phonebook</h1></contact-form
       >
-      <input type="text" (input)="onInput()" [(ngModel)]='filterValue' >
-      <contact-list [contacts]="contacts">Contacts</contact-list>
+      <input
+        class="filter-input"
+        type="text"
+        (input)="onInput()"
+        [(ngModel)]="filterValue"
+      />
+      <contact-list
+        (onContactDelete)="onContactDelete($event)"
+        [contacts]="filteredContacts"
+        ><h2>Contacts</h2></contact-list
+      >
     </div>
   `,
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  contacts:Array<any> = [
+  contacts: Array<any> = [
     { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
     { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
     { id: "id-3", name: "Eden Clements", number: "645-17-79" },
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ];
-  filterValue:string = ''
+  filteredContacts: Array<any> = this.contacts;
+  filterValue: string = "";
 
-  onSubmitted({name,number}) {
+  onSubmitted({ name, number }) {
     if (name === "" || number === "") {
       return;
     }
@@ -32,21 +43,31 @@ export class AppComponent {
       return;
     }
     this.contacts = [
-        ...this.contacts,
-        {
-            id: 'id',
-            name,
-            number
-        }
-    ] 
+      ...this.contacts,
+      {
+        id: "id",
+        name,
+        number,
+      },
+    ];
+    this.filteredContacts = this.contacts
   }
-  onInput(){
-    
-    this.contacts.filter((contact) => {
-        const lowerContact = contact.name.toLowerCase();
-        return lowerContact.includes(this.filterValue.toLowerCase())
-    } )
-}
+  onContactDelete(id: string) {
+    this.contacts = this.contacts.filter((contact) => {
+      return contact.id !== id;
+    });
+    this.filteredContacts = this.contacts;
+  }
+  onInput() {
+    if (this.filterValue === "") {
+      this.filteredContacts = this.contacts;
+      return;
+    }
+    this.filteredContacts = this.contacts.filter((contact) => {
+      const lowerContact = contact.name.toLowerCase();
+      return lowerContact.includes(this.filterValue.toLowerCase());
+    });
+  }
 }
 
 // <h2>Contacts</h2>

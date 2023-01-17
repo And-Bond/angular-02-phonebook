@@ -4,14 +4,15 @@ import { Component, EventEmitter, Output } from "@angular/core";
     selector: 'contact-form',
     template:`
     <ng-content></ng-content>
-        <form  (submit)="submit()">
-            <p>Name</p>
-            <input type="text" name="name" [(ngModel)]="name">
-            <p>Tel</p>
-            <input type="tel" name="number" [(ngModel)]='number'>
-            <button type="submit">Add contact</button>
+        <form class="form" (submit)="submit()">
+            <p class="p">Name</p>
+            <input class="input" type="text" name="name" [(ngModel)]="name">
+            <p class="p">Tel</p>
+            <input class="input" type="tel" name="number" [(ngModel)]='number'>
+            <button class="form-button" type="submit">Add contact</button>
         </form>
-    `
+    `,
+    styleUrls: ['./contact-form.component.css']
 })
 
 export class ContactForm{
