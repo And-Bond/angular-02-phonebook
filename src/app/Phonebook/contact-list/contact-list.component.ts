@@ -3,19 +3,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'contact-list',
-    template: `
-    <ng-content></ng-content>
-    <ul>
-        <li class="li" *ngFor="let contact of contacts">
-            {{contact.name}}: {{contact.number}}
-            <button class="button" name="{{contact.id}}" type="click" (click)="onDelete($event)">Delete</button>
-        </li>
-    </ul>
-    `,
+    templateUrl:'./contact-list.component.html' ,
     styleUrls: ['./contact-list.component.css']
 })
 
-export class ContactList{
+export class ContactListComponent{
     @Input() contacts:Array<any> = []
     @Output() onContactDelete = new EventEmitter<string>
 

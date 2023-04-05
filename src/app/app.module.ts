@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 
 import { AppComponent }   from './app.component';
-import {ContactForm} from './contact-form/contact-form.component'
-import {ContactList} from './contact-list/contact-list.component'
+import {ContactListComponent} from './Phonebook/contact-list/contact-list.component'
+import {PhonebookModule} from './Phonebook/phonebook.module'
 
 @NgModule({
-    imports:      [ BrowserModule, FormsModule ],
-    declarations: [ AppComponent,ContactForm,ContactList ],
+    imports:      [ BrowserModule, FormsModule, PhonebookModule ],
+    declarations: [ AppComponent ],
     bootstrap:    [ AppComponent ]
 })
 

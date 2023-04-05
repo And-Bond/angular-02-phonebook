@@ -2,20 +2,11 @@ import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
     selector: 'contact-form',
-    template:`
-    <ng-content></ng-content>
-        <form class="form" (submit)="submit()">
-            <p class="p">Name</p>
-            <input class="input" type="text" name="name" [(ngModel)]="name">
-            <p class="p">Tel</p>
-            <input class="input" type="tel" name="number" [(ngModel)]='number'>
-            <button class="form-button" type="submit">Add contact</button>
-        </form>
-    `,
+    templateUrl:'./contact-form.component.html',
     styleUrls: ['./contact-form.component.css']
 })
 
-export class ContactForm{
+export class ContactFormComponent{
     name:  '';
     number:  '';
     @Output() onSubmit = new EventEmitter<object>();
